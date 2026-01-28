@@ -122,6 +122,8 @@ jobs:
 
     - name: Building recovery
       run: |
+        sed -i '/PRODUCT_STATIC_BOOT_CONTROL_HAL/d' $DEVICEDIR/device.mk
+        sed -i '/BOARD_HAL_STATIC_LIBRARIES/d' $DEVICEDIR/BoardConfig.mk
         source build/envsetup.sh
         export ALLOW_MISSING_DEPENDENCIES=true
         lunch ${{ steps.gdt.outputs.MAKEFILE_NAME }}-eng
